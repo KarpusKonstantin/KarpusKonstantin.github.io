@@ -1,37 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
+    <title>Telegram WebApp</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, Telegram Web App!</h1>
-    <button id="sendDataButton">Send Data to Telegram</button>
-
+    <h1>Привет, Telegram WebApp!</h1>
+    <p id="user-info">Нажмите кнопку, чтобы увидеть имя пользователя</p>
+    <button onclick="showUserInfo()">Показать имя</button>
+    
     <script>
-        // Проверяем, доступен ли объект Telegram
-        if (window.Telegram && window.Telegram.WebApp) {
-            const tg = window.Telegram.WebApp;
-
-            // Показываем кнопку "Отправить данные"
-            const sendDataButton = document.getElementById('sendDataButton');
-            sendDataButton.addEventListener('click', () => {
-                // Отправляем данные обратно в Telegram
-                tg.sendData(JSON.stringify({ key: 'value' }));
-            });
-
-            // Обработчик события, когда Web App готов к использованию
-            tg.ready();
-
-            // Получаем данные пользователя
-            const user = tg.initDataUnsafe.user;
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        function showUserInfo() {
+            let user = tg.initDataUnsafe.user;
             if (user) {
-                console.log('User:', user);
+                document.getElementById('user-info').innerText = `Привет, ${user.first_name}!`;
+            } else {
+                document.getElementById('user-info').innerText = "Пользователь не найден";
             }
-        } else {
-            console.error("Telegram Web App is not available.");
         }
     </script>
 </body>
