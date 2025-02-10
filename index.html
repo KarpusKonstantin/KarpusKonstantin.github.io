@@ -1,70 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выбор конструкции окна</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .construction {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .construction img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-        }
-        .construction button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <h1>Выберите конструкцию окна</h1>
-    <div class="construction">
-        <img src="https://karpuskonstantin.github.io/images/1.jpg" alt="Конструкция 1">
-        <button onclick="selectConstruction('Конструкция 1')">Выбрать Конструкцию 1</button>
-    </div>
-    <div class="construction">
-        <img src="https://karpuskonstantin.github.io/images/1.jpg" alt="Конструкция 2">
-        <button onclick="selectConstruction('Конструкция 2')">Выбрать Конструкцию 2</button>
-    </div>
-    <div class="construction">
-        <img src="https://karpuskonstantin.github.io/images/1.jpg" alt="Конструкция 3">
-        <button onclick="selectConstruction('Конструкция 3')">Выбрать Конструкцию 3</button>
-    </div>
-    <div class="construction">
-        <img src="https://karpuskonstantin.github.io/images/1.jpg" alt="Конструкция 4">
-        <button onclick="selectConstruction('Конструкция 4')">Выбрать Конструкцию 4</button>
-    </div>
-    
+    <h1>Hello, Telegram Web App!</h1>
     <button id="sendDataButton">Send Data to Telegram</button>
-    
+
     <script>
-      function selectConstruction(construction) {
         // Проверяем, доступен ли объект Telegram
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
-
-            tg.sendData(construction);
-
-            console.log(construction);
 
             // Показываем кнопку "Отправить данные"
             const sendDataButton = document.getElementById('sendDataButton');
             sendDataButton.addEventListener('click', () => {
                 // Отправляем данные обратно в Telegram
                 tg.sendData(JSON.stringify({ key: 'value' }));
-//                tg.sendData(construction);
-              });
+            });
 
             // Обработчик события, когда Web App готов к использованию
             tg.ready();
@@ -77,7 +33,6 @@
         } else {
             console.error("Telegram Web App is not available.");
         }
-      }
-    </script>    
+    </script>
 </body>
 </html>
