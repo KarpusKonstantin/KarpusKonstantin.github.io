@@ -22,6 +22,20 @@
     <h1>Привет, Telegram WebApp!</h1>
     <p id="user-info">Нажмите кнопку, чтобы увидеть имя пользователя</p>
     <button onclick="showUserInfo()">Показать имя</button>
+
+    <h1>Выберите конструкцию окна</h1>
+    <div class="construction">
+        <img src="https://KarpusKonstantin.github.io/images/1.jpg" alt="Конструкция 1">
+        <button onclick="selectConstruction('Конструкция 1')">Выбрать Конструкцию 1</button>
+    </div>
+    <div class="construction">
+        <img src="https://KarpusKonstantin.github.io/images/1.jpg" alt="Конструкция 2">
+        <button onclick="selectConstruction('Конструкция 2')">Выбрать Конструкцию 2</button>
+    </div>
+    <div class="construction">
+        <img src="https://KarpusKonstantin.github.io/images/1.jpg" alt="Конструкция 3">
+        <button onclick="selectConstruction('Конструкция 3')">Выбрать Конструкцию 3</button>
+    </div>
     
     <script>
         let tg = window.Telegram.WebApp;
@@ -35,6 +49,11 @@
                 document.getElementById('user-info').innerText = "Пользователь не найден";
             }
         }
+
+        function selectConstruction(ctx) {
+            tg.sendData(JSON.stringify({ key: ctx }));
+        }
+
     </script>
 </body>
 </html>
