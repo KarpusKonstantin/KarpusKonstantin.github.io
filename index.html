@@ -46,9 +46,12 @@
     </div>
 
     <script>
-        function selectConstruction(construction) {
-            // Отправляем данные обратно в Telegram
-            Telegram.WebApp.sendData(construction);
+      function selectConstruction(construction) {
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.sendData(construction);
+            } else {
+                alert("Web App не запущен в Telegram.");
+            }
         }
     </script>
 </body>
