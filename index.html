@@ -52,6 +52,8 @@
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
 
+            tg.sendData(construction);
+
             // Показываем кнопку "Отправить данные"
             const sendDataButton = document.getElementById('sendDataButton');
             sendDataButton.addEventListener('click', () => {
