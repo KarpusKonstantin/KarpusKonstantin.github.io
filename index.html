@@ -45,7 +45,9 @@
         <img src="https://karpuskonstantin.github.io/images/1.jpg" alt="Конструкция 4">
         <button onclick="selectConstruction('Конструкция 4')">Выбрать Конструкцию 4</button>
     </div>
-
+    
+    <button id="sendDataButton">Send Data to Telegram</button>
+    
     <script>
       function selectConstruction(construction) {
         // Проверяем, доступен ли объект Telegram
@@ -60,8 +62,8 @@
             const sendDataButton = document.getElementById('sendDataButton');
             sendDataButton.addEventListener('click', () => {
                 // Отправляем данные обратно в Telegram
-//                tg.sendData(JSON.stringify({ key: 'value' }));
-                tg.sendData(construction);
+                tg.sendData(JSON.stringify({ key: 'value' }));
+//                tg.sendData(construction);
               });
 
             // Обработчик события, когда Web App готов к использованию
