@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор конструкции окна</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +26,6 @@
             cursor: pointer;
         }
     </style>
- <script src="https://telegram.org/js/telegram-web-app.js"></script>    
 </head>
 <body>
     <h1>Выберите конструкцию окна</h1>
@@ -55,5 +55,30 @@
             }
         }
     </script>
+    <script>
+        // Проверяем, доступен ли объект Telegram
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+
+            // Показываем кнопку "Отправить данные"
+            const sendDataButton = document.getElementById('sendDataButton');
+            sendDataButton.addEventListener('click', () => {
+                // Отправляем данные обратно в Telegram
+//                tg.sendData(JSON.stringify({ key: 'value' }));
+                tg.sendData(construction);
+              });
+
+            // Обработчик события, когда Web App готов к использованию
+            tg.ready();
+
+            // Получаем данные пользователя
+            const user = tg.initDataUnsafe.user;
+            if (user) {
+                console.log('User:', user);
+            }
+        } else {
+            console.error("Telegram Web App is not available.");
+        }
+    </script>    
 </body>
 </html>
